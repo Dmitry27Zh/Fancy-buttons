@@ -1,17 +1,22 @@
 .fancy-btn {
   --bg-color: #e3e3e3;
-  --accent-color: #0af;
+  --bg-accent-color: #0af;
+  --text-color: #333333;
+  --text-accent-color: #ffffff;
   --border-width: 0.3rem;
+  --base-transition-settings: 0.3s ease-in-out;
   position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
   font-size: 1.5rem;
+  color: var(--text-color);
   text-align: center;
   background: var(--bg-color);
   border: none;
   cursor: pointer;
+  transition: color var(--base-transition-settings);
 }
 
 .fancy-btn:focus {
@@ -19,14 +24,15 @@
 }
 
 .fancy-btn::before {
+  z-index: -1;
+  position: absolute;
+  transition: transform var(--base-transition-settings), inset var(--base-transition-settings);
+  content: '';
 }
 
 .fancy-btn.fancy-btn--pop::before {
-  z-index: -1;
-  position: absolute;
   inset: 0;
-  border: var(--border-width) solid var(--accent-color);
-  transition: inset 0.3s ease-in-out;
+  border: var(--border-width) solid var(--bg-accent-color);
   content: '';
 }
 
@@ -35,6 +41,59 @@
   inset: calc(var(--border-width) * -2);
 }
 
+.fancy-btn.fancy-btn--slide {
+  z-index: 1;
+}
+
+.fancy-btn.fancy-btn--slide::before {
+  inset: 0;
+  background: var(--bg-accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.fancy-btn.fancy-btn--slide:hover,
+.fancy-btn.fancy-btn--slide:focus-visible,
+.fancy-btn.fancy-btn--circle:hover,
+.fancy-btn.fancy-btn--circle:focus-visible {
+  color: var(--text-accent-color);
+}
+
+.fancy-btn.fancy-btn--slide:hover::before,
+.fancy-btn.fancy-btn--slide:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.fancy-btn.fancy-btn--circle {
+  z-index: 1;
+  background: var(--bg-accent-color);
+  overflow: hidden;
+}
+
 .fancy-btn.fancy-btn--circle::before {
-  content: ;
+  inset: 0;
+  background: var(--bg-color);
+  border-radius: 50%;
+  transform: scale(1.5);
+}
+
+.fancy-btn.fancy-btn--circle:hover::before,
+.fancy-btn.fancy-btn--circle:focus-visible::before {
+  transform: scale(0);
+}
+
+.fancy-btn.fancy-btn--underline {
+  z-index: 1;
+}
+
+.fancy-btn.fancy-btn--underline::before {
+  inset: auto 0 0 0;
+  height: var(--border-width);
+  background: var(--bg-accent-color);
+  transform: scaleX(0);
+}
+
+.fancy-btn.fancy-btn--underline:hover::before,
+.fancy-btn.fancy-btn--underline:focus-visible::before {
+  transform: scaleX(1);
 }
