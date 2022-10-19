@@ -1,4 +1,4 @@
-.btn {
+.fancy-btn {
   --bg-color: #e3e3e3;
   --accent-color: #0af;
   --border-width: 0.3rem;
@@ -14,11 +14,14 @@
   cursor: pointer;
 }
 
-.btn:focus {
+.fancy-btn:focus {
   outline: none;
 }
 
-.btn.btn--pop::before {
+.fancy-btn::before {
+}
+
+.fancy-btn.fancy-btn--pop::before {
   z-index: -1;
   position: absolute;
   inset: 0;
@@ -27,7 +30,11 @@
   content: '';
 }
 
-.btn.btn--pop:hover::before,
-.btn.btn--pop:focus-visible::before {
+.fancy-btn.fancy-btn--pop:hover::before,
+.fancy-btn.fancy-btn--pop:focus-visible::before {
   inset: calc(var(--border-width) * -2);
+}
+
+.fancy-btn.fancy-btn--circle::before {
+  content: ;
 }
