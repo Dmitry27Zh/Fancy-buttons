@@ -1,0 +1,33 @@
+.btn {
+  --bg-color: #e3e3e3;
+  --accent-color: #0af;
+  --border-width: 0.3rem;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  background: var(--bg-color);
+  border: none;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn.btn--pop::before {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  border: var(--border-width) solid var(--accent-color);
+  transition: inset 0.3s ease-in-out;
+  content: '';
+}
+
+.btn.btn--pop:hover::before,
+.btn.btn--pop:focus-visible::before {
+  inset: calc(var(--border-width) * -2);
+}
